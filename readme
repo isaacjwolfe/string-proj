@@ -1,0 +1,172 @@
+Assignment 2 readme File
+
+------------------------------------------------------------------------
+What is your name?
+
+Isaac Wolfe
+
+------------------------------------------------------------------------
+What authorized sources of information did you use to complete
+the assignment? COPY THE LIST of authorized sources of information
+given in the "Policies" web page to this section of the readme file,
+and edit it as appropriate.
+
+The course's lectures.
+
+The course's precepts.
+
+The course's website.
+
+Documents that are referenced directly by the course's website.
+
+The course's textbooks.
+
+The man pages.
+
+I consulted with a former COS 217 student in a conceptual interaction
+that could have legitimately appeared on the s Piazza account. Neither
+of us violated course policies.
+
+------------------------------------------------------------------------
+What unauthorized sources of information did you use to complete the
+assignment? List any unauthorized sources of information that you used
+to complete the assignment, and describe how you used them. The course
+"Policies" web page defines unauthorized sources of information, and
+any source that you have used but not listed in the authorized sources
+should be included here. Please note that using an unauthorized source
+may trigger a course penalty, and depending on the nature of the
+interaction, may additionally require the interaction being reported
+to the Committee on Discipline. Write "None" if you used no
+unauthorized sources of information.
+
+
+None
+
+------------------------------------------------------------------------
+What is your assessment of the assignment? Was it helpful? Was it fun?
+
+Less helpful and less fun than the previous assignment. I feel as
+if there was a better way to learn how to use pointers effectively.
+
+------------------------------------------------------------------------
+(optional) What information can you provide about your submission that
+will help your grader to grade it in the most favorable light? In
+particular, what bugs are in your submission?
+
+
+
+------------------------------------------------------------------------
+What warnings does splint generate on stra.c, and what are your
+disagreements with them? Copy the splint warnings here, and express your
+disagreement after each warning. If there are no warnings, then write
+"None."
+
+None.
+
+------------------------------------------------------------------------
+What warnings does critTer generate on stra.c, and what are your
+disagreements with them? Copy the critTer warnings here, and express
+your disagreement after each warning. If there are no warnings, then
+write "None."
+
+stra.c: line 119: low priority: 
+This area is deeply nested at level 4, consider refactoring
+
+(and other like above)
+
+This is a deeply nested area within multiple loops, and there are
+certainly ways to make it less nested: I could create and call
+other methods, or I could separate the actions into sepaarte loops.
+
+I did not take those actions because (1) I believe the logic is sound
+and that the code is more clear in this format, and (2) if I created
+separate loops there would have been large areas of duplicate code:
+why do with six loops what three nested loops can do?
+
+I also believe that the nested "if" statements are contributing the 
+generation of this complaint, but the if statement serve more as checks
+and should not come at the detriment of performace. 
+
+
+------------------------------------------------------------------------
+What warnings does splint generate on strp.c, and what are your
+disagreements with them? Copy the splint warnings here, and express your
+disagreement after each warning. If there are no warnings, then write
+"None."
+
+strp.c: (in function Str_search)
+strp.c:142:3: Variable uInternalBigIndex used in inconsistent state
+  An rvalue is used that may not be initialized to a value on some
+  execution path. (Use -usedef to inhibit warning)
+       strp.c:139:3: Storage uInternalBigIndex becomes inconsistent
+       (released on one branch)
+
+Splint generated the above warning, which I believe may or may not be
+legitimate but that the logic of my code depends on this contrivance.
+I understand what the warning is trying to convery conceptually, but
+when I test my code and run through the logic I do not see an instance
+where this contrivance becomes and issue to efficiency, performance,
+or accuracy.
+
+------------------------------------------------------------------------
+What warnings does critTer generate on strp.c, and what are your
+disagreements with them? Copy the critTer warnings here, and express
+your disagreement after each warning. If there are no warnings, then
+write "None."
+
+stra.p: line 119: low priority: 
+This area is deeply nested at level 4, consider refactoring
+
+This is a deeply nested area within multiple loops, and there are
+certainly ways to make it less nested: I could create and call
+other methods, or I could separate the actions into sepaarte loops.
+
+I did not take those actions because (1) I believe the logic is sound
+and that the code is more clear in this format, and (2) if I created
+separate loops there would have been large areas of duplicate code:
+why do with six loops what three nested loops can do?
+
+I also believe that the nested "if" statements are contributing the 
+generation of this complaint, but the if statement serve more as checks
+and should not come at the detriment of performace. 
+
+------------------------------------------------------------------------
+What warnings does splint generate on replace.c, and what are your
+disagreements with them? Copy the splint warnings here, and express your
+disagreement after each warning. If there are no warnings, then write
+"None."
+
+None.
+
+------------------------------------------------------------------------
+What warnings does critTer generate on replace.c, and what are your
+disagreements with them? Copy the critTer warnings here, and express
+your disagreement after each warning. If there are no warnings, then
+write "None."
+
+replace.c: line 50: low priority: 
+A loop should consist of fewer than 35 lines;
+this loop consists of 36 lines; consider refactoring
+
+This is merely because the length of my comments. It is still a large 
+loop, but not excessively so.
+
+------------------------------------------------------------------------
+Is it possible for Str_copy or Str_concat to call assert to verify
+that the destination memory area specified by the caller is large
+enough? Explain.
+
+This is tricky. Technically I feel as if the answer should be that
+it is not possible, and that's where I'll put the most emphasis. 
+This is because there is no way to access the destination memory size
+at the time when assert statements are pre-processed as macros. An 
+assert should be applied to a value that does not need to be computed,
+that is known and is merely being checked. In checking this in 
+Str_concat and Str_copy in the way we've concieved them, this is
+not possible.
+
+At the same time, though I do not know hoe to achieve it, I believe 
+this is possible if you define some type of #if or #defined SIZE 
+element at some other point. 
+
+------------------------------------------------------------------------
